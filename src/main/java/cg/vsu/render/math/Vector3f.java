@@ -193,6 +193,18 @@ public class Vector3f implements Vector<Vector3f> {
         return this.x * v.x + this.y * v.y + this.z * v.z;
     }
 
+    /**
+     * Sets this vector to the cross product of the two vectors.
+     * @param v The other vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f crs(Vector3f v) {
+        this.x = this.y * v.z - this.z * v.y;
+        this.y = this.z * v.x - this.x * v.z;
+        this.z = this.x * v.y - this.y * v.x;
+        return this;
+    }
+
     @Override
     public Vector3f to(Vector3f v) {
         return new Vector3f(v.x - this.x, v.y - this.y, v.z - this.z);

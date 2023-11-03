@@ -164,6 +164,14 @@ public class Vector2f implements Vector<Vector2f> {
         return this.x * v.x + this.y * v.y;
     }
 
+    /**
+     * @param v The other vector.
+     * @return The 2D-cross product of the two vectors.
+     */
+    public float crs(Vector2f v) {
+        return this.x * v.y - this.y * v.x;
+    }
+
     @Override
     public Vector2f to(Vector2f v) {
         return new Vector2f(v.x - this.x, v.y - this.y);
