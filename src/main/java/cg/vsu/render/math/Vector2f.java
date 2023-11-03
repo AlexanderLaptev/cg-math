@@ -85,7 +85,7 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public float len() {
-        return FMath.sqrt(x * x + y * y);
+        return MathUtils.sqrt(x * x + y * y);
     }
 
     @Override
