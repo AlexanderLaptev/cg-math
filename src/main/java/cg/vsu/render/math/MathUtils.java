@@ -4,7 +4,57 @@ package cg.vsu.render.math;
  * Common math operations.
  */
 public class MathUtils {
+    /**
+     * The default epsilon value used for equality comparisons.
+     */
+    public static final float EPSILON = 1E-7f;
+    public static final double EPSILON_D = 1E-7;
+
     private MathUtils() {}
+
+    /**
+     * Performs an accurate floating-point equals comparison using epsilon.
+     * @param a The first value.
+     * @param b The second value.
+     * @param epsilon The epsilon value.
+     * @return Whether the two given values are nearly equal.
+     */
+    public static boolean epsEquals(float a, float b, float epsilon) {
+        float diff = Math.abs(a - b);
+        return diff <= epsilon;
+    }
+
+    /**
+     * Performs an accurate floating-point equals comparison using epsilon.
+     * @param a The first value.
+     * @param b The second value.
+     * @return Whether the two given values are nearly equal.
+     */
+    public static boolean epsEquals(float a, float b) {
+        return epsEquals(a, b, EPSILON);
+    }
+
+    /**
+     * Performs an accurate floating-point equals comparison using epsilon.
+     * @param a The first value.
+     * @param b The second value.
+     * @param epsilon The epsilon value.
+     * @return Whether the two given values are nearly equal.
+     */
+    public static boolean epsEquals(double a, double b, double epsilon) {
+        double diff = Math.abs(a - b);
+        return diff <= epsilon;
+    }
+
+    /**
+     * Performs an accurate floating-point equals comparison using epsilon.
+     * @param a The first value.
+     * @param b The second value.
+     * @return Whether the two given values are nearly equal.
+     */
+    public static boolean epsEquals(double a, double b) {
+        return epsEquals(a, b, EPSILON_D);
+    }
 
     /**
      * Clamps the given value between min and max.
