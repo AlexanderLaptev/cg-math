@@ -106,4 +106,17 @@ public class MathUtils {
         if (v < 0.0) return 0.0;
         return v;
     }
+
+    /**
+     * Maps the given value from one range to another.
+     * @param v The value to map.
+     * @param inMin The start of the input range.
+     * @param inMax The end of the input range.
+     * @param outMin The start of the output range.
+     * @param outMax The end of the output range.
+     * @return The mapped value.
+     */
+    public static float map(float v, float inMin, float inMax, float outMin, float outMax) {
+        return outMin + (v - inMin) / (inMax - inMin) * (outMax - outMin);
+    }
 }
