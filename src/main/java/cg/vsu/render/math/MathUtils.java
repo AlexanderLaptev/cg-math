@@ -7,20 +7,6 @@ public class MathUtils {
     private MathUtils() {}
 
     /**
-     * @return The square root of the given value.
-     */
-    public static float sqrt(float a) {
-        return (float) Math.sqrt(a);
-    }
-
-    /**
-     * @return The square root of the given value.
-     */
-    public static double sqrt(double a) {
-        return Math.sqrt(a);
-    }
-
-    /**
      * Clamps the given value between min and max.
      * @param v The value to clamp.
      * @param min The min value.

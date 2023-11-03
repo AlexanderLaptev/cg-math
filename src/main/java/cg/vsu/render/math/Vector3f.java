@@ -104,7 +104,7 @@ public class Vector3f implements Vector<Vector3f> {
 
     @Override
     public float len() {
-        return MathUtils.sqrt(x * x + y * y + z * z);
+        return (float) Math.sqrt(x * x + y * y + z * z);
     }
 
     @Override
