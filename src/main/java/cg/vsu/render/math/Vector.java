@@ -1,7 +1,7 @@
 package cg.vsu.render.math;
 
 /**
- * An interface for all vectors.
+ * An interface for all mutable vectors.
  */
 public interface Vector<T extends Vector<T>> {
     /**
@@ -56,31 +56,31 @@ public interface Vector<T extends Vector<T>> {
     T scl(float scalar);
 
     /**
-     * Scales this vector by the reciprocal of the given scalar.
-     * @param scalar The scalar.
-     * @return This vector for chaining.
-     */
-    T sclinv(float scalar);
-
-    /**
-     * Performs a component-wise multiplication (Hadamard product) of this vector and the other vector.
+     * Performs a coordinate-wise multiplication (Hadamard product) of this vector and the other vector.
      * @param v The other vector.
      * @return This vector for chaining.
      */
     T mul(T v);
 
     /**
-     * Performs a component-wise division of this vector and the other vector.
+     * Performs a coordinate-wise division of this vector and the other vector.
      * @param v The other vector.
      * @return This vector for chaining.
      */
     T div(T v);
 
     /**
+     * Individually divides each coordinate of this vector by the given scalar.
+     * @param divisor The scalar.
+     * @return This vector for chaining.
+     */
+    T div(float divisor);
+
+    /**
      * @param v The other vector.
      * @return The dot product between this and the other vector.
      */
-    T dot(T v);
+    float dot(T v);
 
     /**
      * @param v The other vector.
