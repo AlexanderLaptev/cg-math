@@ -174,7 +174,9 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public Vector2f to(Vector2f v) {
-        return new Vector2f(v.x - this.x, v.y - this.y);
+        this.x = v.x - this.x;
+        this.y = v.y - this.y;
+        return this;
     }
 
     @Override

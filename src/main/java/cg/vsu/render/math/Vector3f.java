@@ -207,7 +207,10 @@ public class Vector3f implements Vector<Vector3f> {
 
     @Override
     public Vector3f to(Vector3f v) {
-        return new Vector3f(v.x - this.x, v.y - this.y, v.z - this.z);
+        this.x = v.x - this.x;
+        this.y = v.y - this.y;
+        this.z = v.z - this.z;
+        return this;
     }
 
     @Override

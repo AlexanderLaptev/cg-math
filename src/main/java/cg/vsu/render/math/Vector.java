@@ -83,8 +83,9 @@ public interface Vector<T extends Vector<T>> {
     float dot(T v);
 
     /**
+     * Sets this vector to the vector from this vector to the other vector.
      * @param v The other vector.
-     * @return The vector from this vector to the other vector.
+     * @return This vector for chaining.
      */
     T to(T v);
 
