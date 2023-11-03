@@ -134,9 +134,9 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     @Override
-    public Vector2f div(float scalar) {
-        this.x /= scalar;
-        this.y /= scalar;
+    public Vector2f div(float divisor) {
+        this.x /= divisor;
+        this.y /= divisor;
         return this;
     }
 
