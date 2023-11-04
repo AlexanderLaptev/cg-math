@@ -57,6 +57,28 @@ public class MathUtils {
     }
 
     /**
+     * Linear interpolation between two values.
+     * @param a The first value.
+     * @param b The second value.
+     * @param alpha The interpolation coefficient.
+     * @return The interpolated value.
+     */
+    public static float lerp(float a, float b, float alpha) {
+        return (1.0f - alpha) * a + alpha * b;
+    }
+
+    /**
+     * Linear interpolation between two values.
+     * @param a The first value.
+     * @param b The second value.
+     * @param alpha The interpolation coefficient.
+     * @return The interpolated value.
+     */
+    public static double lerp(double a, double b, double alpha) {
+        return (1.0 - alpha) * a + alpha * b;
+    }
+
+    /**
      * Clamps the given value between min and max.
      * @param v The value to clamp.
      * @param min The min value.
