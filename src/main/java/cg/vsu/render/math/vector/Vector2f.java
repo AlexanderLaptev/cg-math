@@ -118,7 +118,7 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public String toString() {
-        return "v3f(x=" + x + ", y=" + y + ")";
+        return "v2f(x=" + x + ", y=" + y + ")";
     }
 
     @Override
