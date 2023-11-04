@@ -1,5 +1,7 @@
 package cg.vsu.render.math.vector;
 
+import java.util.Objects;
+
 /**
  * A mutable three-dimensional float vector.
  *
@@ -240,5 +242,23 @@ public class Vector4f implements Vector<Vector4f> {
     @Override
     public boolean isZero() {
         return x == 0f && y == 0.0f && z == 0.0f && w == 0.0f;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector4f vector4f = (Vector4f) o;
+        return Float.compare(x, vector4f.x) == 0 && Float.compare(y, vector4f.y) == 0 && Float.compare(z, vector4f.z) == 0 && Float.compare(w, vector4f.w) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z, w);
+    }
+
+    @Override
+    public String toString() {
+        return "v3f(x=" + x + ", y=" + y + ", z=" + z + ", w=" + w + ")";
     }
 }

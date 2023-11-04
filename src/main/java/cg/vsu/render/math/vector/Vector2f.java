@@ -1,5 +1,7 @@
 package cg.vsu.render.math.vector;
 
+import java.util.Objects;
+
 /**
  * A mutable two-dimensional float vector.
  *
@@ -189,5 +191,23 @@ public class Vector2f implements Vector<Vector2f> {
     @Override
     public boolean isZero() {
         return x == 0f && y == 0.0f;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector2f vector2f = (Vector2f) o;
+        return Float.compare(x, vector2f.x) == 0 && Float.compare(y, vector2f.y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "v2f(x=" + x + ", y=" + y + ")";
     }
 }

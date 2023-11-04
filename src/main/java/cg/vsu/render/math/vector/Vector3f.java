@@ -1,5 +1,7 @@
 package cg.vsu.render.math.vector;
 
+import java.util.Objects;
+
 /**
  * A mutable three-dimensional float vector.
  *
@@ -56,6 +58,7 @@ public class Vector3f implements Vector<Vector3f> {
 
     /**
      * Constructs a vector with the given coordinates.
+     *
      * @param x The x coordinate of the vector.
      * @param y The y coordinate of the vector.
      * @param z The z coordinate of the vector.
@@ -73,6 +76,7 @@ public class Vector3f implements Vector<Vector3f> {
 
     /**
      * Sets the coordinates of this vector to the specified values.
+     *
      * @param x The new x coordinate of this vector.
      * @param y The new y coordinate of this vector.
      * @param z The new z coordinate of this vector.
@@ -140,6 +144,7 @@ public class Vector3f implements Vector<Vector3f> {
 
     /**
      * Individually scales the coordinates of this vector.
+     *
      * @param scaleX The x coordinate scale.
      * @param scaleY The y coordinate scale.
      * @param scaleZ The z coordinate scale.
@@ -178,6 +183,7 @@ public class Vector3f implements Vector<Vector3f> {
 
     /**
      * Individually divides the coordinates of this vector by the given scalars.
+     *
      * @param scaleX The x coordinate scale.
      * @param scaleY The y coordinate scale.
      * @param scaleZ The z coordinate scale.
@@ -197,6 +203,7 @@ public class Vector3f implements Vector<Vector3f> {
 
     /**
      * Sets this vector to the cross product of the two vectors.
+     *
      * @param v The other vector.
      * @return This vector for chaining.
      */
@@ -223,5 +230,23 @@ public class Vector3f implements Vector<Vector3f> {
     @Override
     public boolean isZero() {
         return x == 0f && y == 0.0f && z == 0.0f;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector3f vector3f = (Vector3f) o;
+        return Float.compare(x, vector3f.x) == 0 && Float.compare(y, vector3f.y) == 0 && Float.compare(z, vector3f.z) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
+    }
+
+    @Override
+    public String toString() {
+        return "v3f(x=" + x + ", y=" + y + ", z=" + z + ")";
     }
 }
