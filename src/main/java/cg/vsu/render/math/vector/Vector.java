@@ -12,11 +12,17 @@ public interface Vector<T extends Vector<T>> {
     T cpy();
 
     /**
-     * Sets the components of this vector to the components of the given vector.
+     * Sets the coordinates of this vector to the coordinates of the given vector.
      * @param v The other vector.
      * @return This vector for chaining.
      */
     T set(T v);
+
+    /**
+     * Sets the coordinates of this vector to the given value.
+     * @return This vector for chaining.
+     */
+    T set(float v);
 
     /**
      * Normalizes the given vector. Does nothing if the length is zero.

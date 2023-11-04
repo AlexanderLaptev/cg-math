@@ -113,6 +113,15 @@ public class Vector4f implements Vector<Vector4f> {
     }
 
     @Override
+    public Vector4f set(float v) {
+        this.x = v;
+        this.y = v;
+        this.z = v;
+        this.w = v;
+        return this;
+    }
+
+    @Override
     public Vector4f nor() {
         if (x == 0.0f && y == 0.0f && z == 0.0f && w == 0.0f) return this;
 

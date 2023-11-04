@@ -98,6 +98,14 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     @Override
+    public Vector3f set(float v) {
+        this.x = v;
+        this.y = v;
+        this.z = v;
+        return this;
+    }
+
+    @Override
     public Vector3f nor() {
         if (x == 0.0f && y == 0.0f && z == 0.0f) return this;
 

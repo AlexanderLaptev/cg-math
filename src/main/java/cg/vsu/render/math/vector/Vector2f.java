@@ -71,6 +71,13 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     @Override
+    public Vector2f set(float v) {
+        this.x = v;
+        this.y = v;
+        return this;
+    }
+
+    @Override
     public Vector2f set(Vector2f v) {
         this.x = v.x;
         this.y = v.y;
