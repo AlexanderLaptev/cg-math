@@ -2,6 +2,8 @@ package cg.vsu.render.math;
 
 /**
  * Common math operations.
+ *
+ * @author Alexander Laptev
  */
 public class MathUtils {
     /**

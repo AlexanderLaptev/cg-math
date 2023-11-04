@@ -2,6 +2,8 @@ package cg.vsu.render.math;
 
 /**
  * An interface for all mutable vectors.
+ *
+ * @author Alexander Laptev
  */
 public interface Vector<T extends Vector<T>> {
     /**

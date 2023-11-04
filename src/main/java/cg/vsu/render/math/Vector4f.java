@@ -2,6 +2,8 @@ package cg.vsu.render.math;
 
 /**
  * A mutable three-dimensional float vector.
+ *
+ * @author Alexander Laptev
  */
 public class Vector4f implements Vector<Vector4f> {
     /**
