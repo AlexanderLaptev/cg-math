@@ -64,6 +64,23 @@ public class Vector4f implements Vector<Vector4f> {
     }
 
     /**
+     * Constructs a new 4D vector from the given 3D vector. The w coordinate is set to 1.
+     * @param v The given 3D vector.
+     */
+    public static Vector4f fromV3f(Vector3f v) {
+        return new Vector4f(v.x, v.y, v.z, 1.0f);
+    }
+
+    /**
+     * Constructs a new 4D vector from the given 3D vector and sets the w coordinate to the specified value.
+     * @param v The given 3D vector.
+     * @param w The w coordinate of the new vector.
+     */
+    public static Vector4f fromV3f(Vector3f v, float w) {
+        return new Vector4f(v.x, v.y, v.z, w);
+    }
+
+    /**
      * Constructs a zero vector.
      */
     public Vector4f() { }

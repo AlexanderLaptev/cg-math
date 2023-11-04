@@ -52,6 +52,14 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     /**
+     * Constructs a 3D vector from the given 4D vector, discarding the w coordinate.
+     * @param v The given 4D vector.
+     */
+    public static Vector3f fromV4f(Vector4f v) {
+        return new Vector3f(v.x, v.y, v.z);
+    }
+
+    /**
      * Constructs a zero vector.
      */
     public Vector3f() { }
