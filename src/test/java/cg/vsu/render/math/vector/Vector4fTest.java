@@ -30,6 +30,7 @@ class Vector4fTest {
         var j = Vector4f.unitY();
         var k = Vector4f.unitZ();
         var l = Vector4f.unitW();
+
         assertTrue(i.isUnit());
         assertTrue(j.isUnit());
         assertTrue(k.isUnit());
@@ -42,6 +43,7 @@ class Vector4fTest {
         var j = Vector4f.unitY();
         var k = Vector4f.unitZ();
         var l = Vector4f.unitW();
+
         assertEquals(1.0f, i.len());
         assertEquals(1.0f, i.len2());
         assertEquals(1.0f, j.len());
@@ -55,12 +57,14 @@ class Vector4fTest {
     @Test
     void zeroConstructsZeroVector() {
         v = Vector4f.zero();
+
         assertTrue(v.isZero());
     }
 
     @Test
     void defaultConstructorConstructsZeroVector() {
         v = new Vector4f();
+
         assertTrue(v.isZero());
     }
 
@@ -85,6 +89,85 @@ class Vector4fTest {
     void cpyReturnsCopy() {
         v.set(1.0f, 2.0f, 3.0f, 4.0f);
         var v1 = v.cpy();
+
         assertEquals(v1, v);
+    }
+
+    @Test
+    void testSetCoords() {
+        v.set(1.0f, 2.0f, 3.0f, 4.0f);
+
+        assertEquals(1.0f, v.x);
+        assertEquals(2.0f, v.y);
+        assertEquals(3.0f, v.z);
+        assertEquals(4.0f, v.w);
+    }
+
+    @Test
+    void testSetValue() {
+        v.set(5.0f);
+
+        assertEquals(5.0f, v.x);
+        assertEquals(5.0f, v.y);
+        assertEquals(5.0f, v.z);
+        assertEquals(5.0f, v.w);
+    }
+
+    @Test
+    void testSetVector() {
+        var v1 = new Vector4f(4.0f, 3.0f, 2.0f, 1.0f);
+        v.set(v1);
+
+        assertEquals(4.0f, v.x);
+        assertEquals(3.0f, v.y);
+        assertEquals(2.0f, v.z);
+        assertEquals(1.0f, v.w);
+    }
+
+    @Test
+    void testNormalizeNonNull() {
+        v.set(5.0f, 0.0f, 0.0f, 0.0f);
+        v.nor();
+
+        assertEquals(1.0f, v.x);
+        assertEquals(0.0f, v.x);
+        assertEquals(0.0f, v.x);
+        assertEquals(0.0f, v.x);
+        assertTrue(v.isUnit());
+        assertFalse(v.isZero());
+    }
+
+    @Test
+    void normalizeIsIneffectiveForZeroVectors() {
+        v.set(0.0f);
+
+        assertDoesNotThrow(() -> v.nor());
+        assertTrue(v.isZero());
+    }
+
+    @Test
+    void testLen() {
+        v.set(1.0f, 1.0f, 1.0f, 1.0f);
+
+        assertEquals(2.0f, v.len());
+    }
+
+    @Test
+    void testLen2() {
+        v.set(1.0f, 1.0f, 1.0f, 1.0f);
+
+        assertEquals(4.0f, v.len());
+    }
+
+    @Test
+    void testAdd() {
+        v.set(2.0f, 4.0f, 6.0f, 8.0f);
+        var v1 = new Vector4f(1.0f, 2.0f, 3.0f, 4.0f);
+        v.add(v1);
+
+        assertEquals(3.0f, v.x);
+        assertEquals(6.0f, v.y);
+        assertEquals(9.0f, v.z);
+        assertEquals(12.0f, v.w);
     }
 }
