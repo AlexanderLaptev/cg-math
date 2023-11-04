@@ -108,7 +108,7 @@ public class Vector3f implements Vector<Vector3f> {
      * @param v The vector.
      * @param z The z component of the vector.
      */
-    public Vector3f(Vector2f v, float z, float w) {
+    public Vector3f(Vector2f v, float z) {
         this.x = v.x;
         this.y = v.y;
         this.z = z;
@@ -557,7 +557,7 @@ public class Vector3f implements Vector<Vector3f> {
     /**
      * @return The distance between the two vectors.
      */
-    public float dst(float x, float y, float z, float w) {
+    public float dst(float x, float y, float z) {
         float a = x - this.x;
         float b = y - this.y;
         float c = z - this.z;
@@ -575,7 +575,7 @@ public class Vector3f implements Vector<Vector3f> {
     /**
      * @return The square of the distance between the two vectors.
      */
-    public float dst2(float x, float y, float z, float w) {
+    public float dst2(float x, float y, float z) {
         float a = x - this.x;
         float b = y - this.y;
         float c = z - this.z;
