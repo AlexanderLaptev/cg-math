@@ -14,7 +14,7 @@ public class MathUtils {
     /**
      * The default double epsilon value used for equality comparisons.
      */
-    public static final double EPSILON_D = 1E-7;
+    public static final double EPSILON_D = 1E-15;
 
     /**
      * The single-precision floating point value of pi (the ratio
