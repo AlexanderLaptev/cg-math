@@ -1,4 +1,4 @@
-package cg.vsu.render.math;
+package cg.vsu.render.math.vector;
 
 /**
  * An interface for all mutable vectors.
