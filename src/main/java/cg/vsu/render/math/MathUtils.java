@@ -7,10 +7,55 @@ package cg.vsu.render.math;
  */
 public class MathUtils {
     /**
-     * The default epsilon value used for equality comparisons.
+     * The default float epsilon value used for equality comparisons.
      */
     public static final float EPSILON = 1E-7f;
+
+    /**
+     * The default double epsilon value used for equality comparisons.
+     */
     public static final double EPSILON_D = 1E-7;
+
+    /**
+     * The single-precision floating point value of pi (the ratio
+     * of the circumference of the circle to its diameter).
+     */
+    public static final float PI = (float) Math.PI;
+
+    /**
+     * The pi constant, doubled.
+     */
+    public static final float PI2 = 2 * PI;
+
+    /**
+     * The pi constant, halved.
+     */
+    public static final float HALF_PI = PI / 2.0f;
+
+    /**
+     * The single precision floating point value of e (Euler's number).
+     */
+    public static final float E = (float) Math.E;
+
+    /**
+     * The full circle angle in radians.
+     */
+    public static final float RAD_FULL = PI2;
+
+    /**
+     * The full circle angle in degrees.
+     */
+    public static final float DEG_FULL = PI2;
+
+    /**
+     * The factor used to convert radians to degrees.
+     */
+    public static final float RAD_TO_DEG = 180.0f / PI;
+
+    /**
+     * The factor used to convert degrees to radians.
+     */
+    public static final float DEG_TO_RAD = PI / 180.0f;
 
     private MathUtils() {}
 
