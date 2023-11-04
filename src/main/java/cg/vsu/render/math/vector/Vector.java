@@ -7,19 +7,37 @@ package cg.vsu.render.math.vector;
  */
 public interface Vector<T extends Vector<T>> {
     /**
+     * @param v The other vector.
+     * @return Whether the components of the two vectors are identical.
+     */
+    boolean idt(T v);
+
+    /**
+     * @param epsilon The epsilon value.
+     * @return Whether the components of the two vectors are nearly equal based on the given epsilon value.
+     */
+    boolean epsIdt(T v, float epsilon);
+
+    /**
+     * @param epsilon The epsilon value.
+     * @return Whether the two vectors are nearly equal based on the given epsilon value.
+     */
+    boolean epsEquals(T v, float epsilon);
+
+    /**
      * @return A copy of the given vector.
      */
     T cpy();
 
     /**
-     * Sets the coordinates of this vector to the coordinates of the given vector.
+     * Sets the components of this vector to the components of the given vector.
      * @param v The other vector.
      * @return This vector for chaining.
      */
     T set(T v);
 
     /**
-     * Sets the coordinates of this vector to the given value.
+     * Sets the components of this vector to the given value.
      * @return This vector for chaining.
      */
     T set(float v);
@@ -87,7 +105,7 @@ public interface Vector<T extends Vector<T>> {
     T add(T v);
 
     /**
-     * Adds the given value to each of the coordinates of this vector.
+     * Adds the given value to each of the components of this vector.
      * @param v The value to add.
      * @return This vector for chaining.
      */
@@ -101,7 +119,7 @@ public interface Vector<T extends Vector<T>> {
     T sub(T v);
 
     /**
-     * Subtracts the given value from each of the coordinates of this vector.
+     * Subtracts the given value from each of the components of this vector.
      * @param v The value to subtract.
      * @return This vector for chaining.
      */
@@ -115,21 +133,21 @@ public interface Vector<T extends Vector<T>> {
     T scl(float scalar);
 
     /**
-     * Performs a coordinate-wise multiplication (Hadamard product) of this vector and the other vector.
+     * Performs a component-wise multiplication (Hadamard product) of this vector and the other vector.
      * @param v The other vector.
      * @return This vector for chaining.
      */
     T scl(T v);
 
     /**
-     * Individually divides each coordinate of this vector by the given scalar.
+     * Individually divides each component of this vector by the given scalar.
      * @param divisor The scalar.
      * @return This vector for chaining.
      */
     T div(float divisor);
 
     /**
-     * Performs a coordinate-wise division of this vector and the other vector.
+     * Performs a component-wise division of this vector and the other vector.
      * @param v The other vector.
      * @return This vector for chaining.
      */
@@ -164,6 +182,14 @@ public interface Vector<T extends Vector<T>> {
     T addMul(T v, float scalar);
 
     /**
+     * Performs a component-wise multiplication of the two given vectors and adds the result to this vector.
+     * @param v The first vector.
+     * @param v2 The second vector.
+     * @return This vector for chaining.
+     */
+    T addMul(T v, T v2);
+
+    /**
      * @param v The other vector.
      * @return The dot product between this and the other vector.
      */
@@ -178,14 +204,14 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * @param v The other vector.
-     * @return Whether this vector is on the line described by the other vector.
+     * @return Whether this vector is parallel to the given vector, regardless of the direction.
      */
     boolean isOnLine(T v);
 
     /**
      * @param v The other vector.
      * @param epsilon The epsilon value.
-     * @return Whether this vector is approximately on the line described by the other vector.
+     * @return Whether this vector is approximately parallel to the given vector, regardless of the direction.
      */
     boolean isOnLine(T v, float epsilon);
 
@@ -224,7 +250,7 @@ public interface Vector<T extends Vector<T>> {
     /**
      * @param v The other vector.
      * @param epsilon The epsilon value.
-     * @return Whether this vector is appoximately orthogonal to the other vector (i.e. their dot product is =0).
+     * @return Whether this vector is approximately orthogonal to the other vector (i.e. their dot product is =0).
      */
     boolean isOrthogonal(T v, float epsilon);
 
@@ -249,12 +275,6 @@ public interface Vector<T extends Vector<T>> {
      * @return Whether this vector is a zero vector.
      */
     boolean isZero();
-
-    /**
-     * @param epsilon The epsilon value.
-     * @return Whether the vectors are nearly equal based on the given epsilon value.
-     */
-    boolean epsEquals(float epsilon);
 
     /**
      * Sets this vector to zero.

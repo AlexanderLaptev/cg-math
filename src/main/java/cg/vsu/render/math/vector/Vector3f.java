@@ -9,17 +9,17 @@ import java.util.Objects;
  */
 public class Vector3f implements Vector<Vector3f> {
     /**
-     * The x coordinate of this vector.
+     * The x component of this vector.
      */
     public float x;
 
     /**
-     * The y coordinate of this vector.
+     * The y component of this vector.
      */
     public float y;
 
     /**
-     * The z coordinate of this vector.
+     * The z component of this vector.
      */
     public float z;
 
@@ -52,29 +52,116 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     /**
-     * Constructs a 3D vector from the given 4D vector, discarding the w coordinate.
-     * @param v The given 4D vector.
-     */
-    public static Vector3f fromV4f(Vector4f v) {
-        return new Vector3f(v.x, v.y, v.z);
-    }
-
-    /**
      * Constructs a zero vector.
      */
     public Vector3f() { }
 
     /**
-     * Constructs a vector with the given coordinates.
+     * Constructs a vector from the given float array. The array must have at least three values.
      *
-     * @param x The x coordinate of the vector.
-     * @param y The y coordinate of the vector.
-     * @param z The z coordinate of the vector.
+     * @param values The array of floats.
+     */
+    public Vector3f(float[] values) {
+        this.x = values[0];
+        this.y = values[1];
+        this.z = values[2];
+    }
+
+    /**
+     * Constructs a vector from the given vector.
+     *
+     * @param v The vector.
+     */
+    public Vector3f(Vector3f v) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+    }
+
+    /**
+     * Constructs a vector with the given components.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
      */
     public Vector3f(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    /**
+     * Constructs a vector from the given 2D vector. The z component is set to zero.
+     *
+     * @param v The vector.
+     */
+    public Vector3f(Vector2f v) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = 0.0f;
+    }
+
+    /**
+     * Constructs a vector from the given 2D vector with the provided z component.
+     *
+     * @param v The vector.
+     * @param z The z component of the vector.
+     */
+    public Vector3f(Vector2f v, float z, float w) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = z;
+    }
+
+    /**
+     * Constructs a vector from the given 4D vector. The w component is discarded.
+     *
+     * @param v The vector.
+     */
+    public Vector3f(Vector4f v) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector3f v = (Vector3f) o;
+        return this.x == v.x && this.y == v.y && this.z == v.z;
+    }
+
+    @Override
+    public boolean epsEquals(Vector3f v, float epsilon) {
+        if (this == v) return true;
+        if (v == null) return false;
+        if (Math.abs(this.x - v.x) > epsilon) return false;
+        if (Math.abs(this.y - v.y) > epsilon) return false;
+        return !(Math.abs(this.z - v.z) > epsilon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
+    }
+
+    @Override
+    public String toString() {
+        return "v3f(x=" + x + ", y=" + y + ", z=" + z + ")";
+    }
+
+    @Override
+    public boolean idt(Vector3f v) {
+        return this.x == v.x && this.y == v.y && this.z == v.z;
+    }
+
+    @Override
+    public boolean epsIdt(Vector3f v, float epsilon) {
+        if (Math.abs(this.x - v.x) > epsilon) return false;
+        if (Math.abs(this.y - v.y) > epsilon) return false;
+        return !(Math.abs(this.z - v.z) > epsilon);
     }
 
     @Override
@@ -83,11 +170,11 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     /**
-     * Sets the coordinates of this vector to the specified values.
+     * Sets the components of this vector to the specified values.
      *
-     * @param x The new x coordinate of this vector.
-     * @param y The new y coordinate of this vector.
-     * @param z The new z coordinate of this vector.
+     * @param x The new x component of this vector.
+     * @param y The new y component of this vector.
+     * @param z The new z component of this vector.
      * @return This vector for chaining.
      */
     public Vector3f set(float x, float y, float z) {
@@ -97,8 +184,61 @@ public class Vector3f implements Vector<Vector3f> {
         return this;
     }
 
+    /**
+     * Sets this vector from the given float array. The array must have at least three values.
+     *
+     * @param values The array of floats.
+     * @return This vector for chaining.
+     */
+    public Vector3f set(float[] values) {
+        this.x = values[0];
+        this.y = values[1];
+        this.z = values[2];
+        return this;
+    }
+
+    /**
+     * Sets this vector from the given 2D vector. The z component is set to zero.
+     *
+     * @param v The vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f set(Vector2f v) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = 0.0f;
+        return this;
+    }
+
+    /**
+     * Sets this vector from the given 2D vector with the specified z component.
+     *
+     * @param v The vector.
+     * @param z The z component of this vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f set(Vector2f v, float z) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = z;
+        return this;
+    }
+
     @Override
     public Vector3f set(Vector3f v) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+        return this;
+    }
+
+    /**
+     * Sets this vector from the given 4D vector. The w component is discarded.
+     *
+     * @param v The vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f set(Vector4f v) {
         this.x = v.x;
         this.y = v.y;
         this.z = v.z;
@@ -114,6 +254,14 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     @Override
+    public Vector3f setZero() {
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+        return this;
+    }
+
+    @Override
     public Vector3f nor() {
         if (x == 0.0f && y == 0.0f && z == 0.0f) return this;
 
@@ -122,6 +270,26 @@ public class Vector3f implements Vector<Vector3f> {
         this.y /= len;
         this.z /= len;
         return this;
+    }
+
+    /**
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
+     * @return The length of the given vector.
+     */
+    public static float len(float x, float y, float z) {
+        return (float) Math.sqrt(x * x + y * y + z * z);
+    }
+
+    /**
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
+     * @return The square of the length of the given vector.
+     */
+    public static float len2(float x, float y, float z) {
+        return x * x + y * y + z * z;
     }
 
     @Override
@@ -135,10 +303,103 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     @Override
+    public Vector3f limit(float limit) {
+        float len2 = x * x + y * y + z * z;
+        if (len2 > limit * limit) {
+            float alpha = limit / (float) Math.sqrt(len2);
+            this.x *= alpha;
+            this.y *= alpha;
+            this.z *= alpha;
+        }
+        return this;
+    }
+
+    @Override
+    public Vector3f limit2(float limit2) {
+        float len2 = x * x + y * y + z * z;
+        if (len2 > limit2) {
+            float alpha = (float) Math.sqrt(limit2 / len2);
+            this.x *= alpha;
+            this.y *= alpha;
+            this.z *= alpha;
+        }
+        return this;
+    }
+
+    @Override
+    public Vector3f setLength(float length) {
+        float oldLen = (float) Math.sqrt(x * x + y * y + z * z);
+        float alpha = length / oldLen;
+        this.x *= alpha;
+        this.y *= alpha;
+        this.z *= alpha;
+        return this;
+    }
+
+    @Override
+    public Vector3f setLength2(float length2) {
+        float oldLen2 = x * x + y * y + z * z;
+        float alpha = (float) Math.sqrt(length2 / oldLen2);
+        this.x *= alpha;
+        this.y *= alpha;
+        this.z *= alpha;
+        return this;
+    }
+
+    @Override
+    public Vector3f clamp(float minLength, float maxLength) {
+        float len2 = len2();
+        if (len2 == 0.0f) return this;
+
+        float max2 = maxLength * maxLength;
+        if (len2 > max2) {
+            float alpha = (float) Math.sqrt(max2 / len2);
+            this.x *= alpha;
+            this.y *= alpha;
+            this.z *= alpha;
+            return this;
+        }
+
+        float min2 = minLength * minLength;
+        if (len2 < min2) {
+            float alpha = (float) Math.sqrt(min2 / len2);
+            this.x *= alpha;
+            this.y *= alpha;
+            this.z *= alpha;
+            return this;
+        }
+
+        return this;
+    }
+
+    @Override
     public Vector3f add(Vector3f v) {
         this.x += v.x;
         this.y += v.y;
         this.z += v.z;
+        return this;
+    }
+
+    @Override
+    public Vector3f add(float v) {
+        this.x += v;
+        this.y += v;
+        this.z += v;
+        return this;
+    }
+
+    /**
+     * Adds the given vector to this vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f add(float x, float y, float z) {
+        this.x += x;
+        this.y += y;
+        this.z += z;
         return this;
     }
 
@@ -151,6 +412,29 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     @Override
+    public Vector3f sub(float v) {
+        this.x -= v;
+        this.y -= v;
+        this.z -= v;
+        return this;
+    }
+
+    /**
+     * Subtracts the given vector from this vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f sub(float x, float y, float z) {
+        this.x -= x;
+        this.y -= y;
+        this.z -= z;
+        return this;
+    }
+
+    @Override
     public Vector3f scl(float scalar) {
         this.x *= scalar;
         this.y *= scalar;
@@ -159,22 +443,22 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     /**
-     * Individually scales the coordinates of this vector.
+     * Performs a component-wise multiplication (Hadamard product) of this vector and the given vector.
      *
-     * @param scaleX The x coordinate scale.
-     * @param scaleY The y coordinate scale.
-     * @param scaleZ The z coordinate scale.
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
      * @return This vector for chaining.
      */
-    public Vector3f scl(float scaleX, float scaleY, float scaleZ) {
-        this.x *= scaleX;
-        this.y *= scaleY;
-        this.z *= scaleZ;
+    public Vector3f scl(float x, float y, float z) {
+        this.x *= x;
+        this.y *= y;
+        this.z *= z;
         return this;
     }
 
     @Override
-    public Vector3f mul(Vector3f v) {
+    public Vector3f scl(Vector3f v) {
         this.x *= v.x;
         this.y *= v.y;
         this.z *= v.z;
@@ -189,6 +473,21 @@ public class Vector3f implements Vector<Vector3f> {
         return this;
     }
 
+    /**
+     * Performs a component-wise division of this vector and the given vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f div(float x, float y, float z) {
+        this.x /= x;
+        this.y /= y;
+        this.z /= z;
+        return this;
+    }
+
     @Override
     public Vector3f div(Vector3f v) {
         this.x /= v.x;
@@ -198,17 +497,112 @@ public class Vector3f implements Vector<Vector3f> {
     }
 
     /**
-     * Individually divides the coordinates of this vector by the given scalars.
-     *
-     * @param scaleX The x coordinate scale.
-     * @param scaleY The y coordinate scale.
-     * @param scaleZ The z coordinate scale.
-     * @return This vector for chaining.
+     * @param v1 The first vector.
+     * @param v2 The second vector.
+     * @return The distance between the two vectors.
      */
-    public Vector3f div(float scaleX, float scaleY, float scaleZ) {
-        this.x /= scaleX;
-        this.y /= scaleY;
-        this.z /= scaleZ;
+    public static float dst(Vector3f v1, Vector3f v2) {
+        float a = v2.x - v1.x;
+        float b = v2.y - v1.y;
+        float c = v2.z - v1.z;
+        return (float) Math.sqrt(a * a + b * b + c * c);
+    }
+
+    /**
+     * @return The distance between the two vectors.
+     */
+    public static float dst(
+            float x1, float y1, float z1,
+            float x2, float y2, float z2
+    ) {
+        float a = x2 - x1;
+        float b = y2 - y1;
+        float c = z2 - z1;
+        return (float) Math.sqrt(a * a + b * b + c * c);
+    }
+
+    /**
+     * @param v1 The first vector.
+     * @param v2 The second vector.
+     * @return The square of the distance between the two vectors.
+     */
+    public static float dst2(Vector3f v1, Vector3f v2) {
+        float a = v2.x - v1.x;
+        float b = v2.y - v1.y;
+        float c = v2.z - v1.z;
+        return a * a + b * b + c * c;
+    }
+
+    /**
+     * @return The square of the distance between the two vectors.
+     */
+    public static float dst2(
+            float x1, float y1, float z1,
+            float x2, float y2, float z2
+    ) {
+        float a = x2 - x1;
+        float b = y2 - y1;
+        float c = z2 - z1;
+        return a * a + b * b + c * c;
+    }
+
+    @Override
+    public float dst(Vector3f v) {
+        float a = v.x - this.x;
+        float b = v.y - this.y;
+        float c = v.z - this.z;
+        return (float) Math.sqrt(a * a + b * b + c * c);
+    }
+
+    /**
+     * @return The distance between the two vectors.
+     */
+    public float dst(float x, float y, float z, float w) {
+        float a = x - this.x;
+        float b = y - this.y;
+        float c = z - this.z;
+        return (float) Math.sqrt(a * a + b * b + c * c);
+    }
+
+    @Override
+    public float dst2(Vector3f v) {
+        float a = v.x - this.x;
+        float b = v.y - this.y;
+        float c = v.z - this.z;
+        return a * a + b * b + c * c;
+    }
+
+    /**
+     * @return The square of the distance between the two vectors.
+     */
+    public float dst2(float x, float y, float z, float w) {
+        float a = x - this.x;
+        float b = y - this.y;
+        float c = z - this.z;
+        return a * a + b * b + c * c;
+    }
+
+    @Override
+    public Vector3f lerp(Vector3f v, float alpha) {
+        this.x += alpha * (v.x - this.x);
+        this.y += alpha * (v.y - this.y);
+        this.z += alpha * (v.z - this.z);
+        return this;
+    }
+
+    @Override
+    public Vector3f addMul(Vector3f v, float scalar) {
+        this.x += v.x * scalar;
+        this.y += v.y * scalar;
+        this.z += v.z * scalar;
+        return this;
+    }
+
+    @Override
+    public Vector3f addMul(Vector3f v, Vector3f v2) {
+        this.x += v.x * v2.x;
+        this.y += v.y * v2.y;
+        this.z += v.z * v2.z;
         return this;
     }
 
@@ -230,12 +624,71 @@ public class Vector3f implements Vector<Vector3f> {
         return this;
     }
 
+
     @Override
     public Vector3f to(Vector3f v) {
         this.x = v.x - this.x;
         this.y = v.y - this.y;
         this.z = v.z - this.z;
         return this;
+    }
+
+    @Override
+    public boolean isOnLine(Vector3f v) {
+        float a = v.x / this.x;
+        float b = v.y / this.y;
+        float c = v.z / this.z;
+        return a == b && b == c && c == a;
+    }
+
+    @Override
+    public boolean isOnLine(Vector3f v, float epsilon) {
+        float a = v.x / this.x;
+        float b = v.y / this.y;
+        float c = v.z / this.z;
+        return Math.abs(a - b) <= epsilon
+                && Math.abs(b - c) <= epsilon
+                && Math.abs(c - a) <= epsilon;
+    }
+
+    @Override
+    public boolean isCollinear(Vector3f v) {
+        return isOnLine(v) && (this.x * v.x + this.y * v.y > 0);
+    }
+
+    @Override
+    public boolean isCollinear(Vector3f v, float epsilon) {
+        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y > 0);
+    }
+
+    @Override
+    public boolean isCollinearOpposite(Vector3f v) {
+        return isOnLine(v) && (this.x * v.x + this.y * v.y < 0);
+    }
+
+    @Override
+    public boolean isCollinearOpposite(Vector3f v, float epsilon) {
+        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y < 0);
+    }
+
+    @Override
+    public boolean isOrthogonal(Vector3f v) {
+        return this.x * v.x + this.y * v.y == 0;
+    }
+
+    @Override
+    public boolean isOrthogonal(Vector3f v, float epsilon) {
+        return Math.abs(this.x * v.x + this.y * v.y) < epsilon;
+    }
+
+    @Override
+    public boolean hasSameDirection(Vector3f v) {
+        return this.x * v.x + this.y * v.y > 0;
+    }
+
+    @Override
+    public boolean hasOppositeDirection(Vector3f v) {
+        return this.x * v.x + this.y * v.y < 0;
     }
 
     @Override
@@ -246,23 +699,5 @@ public class Vector3f implements Vector<Vector3f> {
     @Override
     public boolean isZero() {
         return x == 0f && y == 0.0f && z == 0.0f;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vector3f vector3f = (Vector3f) o;
-        return Float.compare(x, vector3f.x) == 0 && Float.compare(y, vector3f.y) == 0 && Float.compare(z, vector3f.z) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y, z);
-    }
-
-    @Override
-    public String toString() {
-        return "v3f(x=" + x + ", y=" + y + ", z=" + z + ")";
     }
 }

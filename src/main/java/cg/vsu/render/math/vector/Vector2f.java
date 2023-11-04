@@ -9,12 +9,12 @@ import java.util.Objects;
  */
 public class Vector2f implements Vector<Vector2f> {
     /**
-     * The x coordinate of this vector.
+     * The x component of this vector.
      */
     public float x;
 
     /**
-     * The y coordinate of this vector.
+     * The y component of this vector.
      */
     public float y;
 
@@ -45,12 +45,91 @@ public class Vector2f implements Vector<Vector2f> {
     public Vector2f() { }
 
     /**
-     * Constructs a vector with the given coordinates.
-     * @param x The x coordinate of the vector.
-     * @param y The y coordinate of the vector.
+     * Constructs a vector from the given float array. The array must have at least two values.
+     *
+     * @param values The array of floats.
+     */
+    public Vector2f(float[] values) {
+        this.x = values[0];
+        this.y = values[1];
+    }
+
+    /**
+     * Constructs a vector from the given vector.
+     *
+     * @param v The vector.
+     */
+    public Vector2f(Vector2f v) {
+        this.x = v.x;
+        this.y = v.y;
+    }
+
+    /**
+     * Constructs a vector with the given components.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
      */
     public Vector2f(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 
+    /**
+     * Constructs a vector from the given 4D vector. The z and w components are discarded.
+     *
+     * @param v The vector.
+     */
+    public Vector2f(Vector4f v) {
+        this.x = v.x;
+        this.y = v.y;
+    }
+
+    /**
+     * Constructs a vector from the given 4D vector. The z component is discarded.
+     *
+     * @param v The vector.
+     */
+    public Vector2f(Vector3f v) {
+        this.x = v.x;
+        this.y = v.y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector2f v = (Vector2f) o;
+        return this.x == v.x && this.y == v.y;
+    }
+
+    @Override
+    public boolean epsEquals(Vector2f v, float epsilon) {
+        if (this == v) return true;
+        if (v == null) return false;
+        if (Math.abs(this.x - v.x) > epsilon) return false;
+        return !(Math.abs(this.y - v.y) > epsilon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "v3f(x=" + x + ", y=" + y + ")";
+    }
+
+    @Override
+    public boolean idt(Vector2f v) {
+        return this.x == v.x && this.y == v.y;
+    }
+
+    @Override
+    public boolean epsIdt(Vector2f v, float epsilon) {
+        if (Math.abs(this.x - v.x) > epsilon) return false;
+        return !(Math.abs(this.y - v.y) > epsilon);
     }
 
     @Override
@@ -59,14 +138,58 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     /**
-     * Sets the coordinates of this vector to the specified values.
-     * @param x The new x coordinate of this vector.
-     * @param y The new y coordinate of this vector.
+     * Sets the components of this vector to the specified values.
+     *
+     * @param x The new x component of this vector.
+     * @param y The new y component of this vector.
      * @return This vector for chaining.
      */
     public Vector2f set(float x, float y) {
         this.x = x;
         this.y = y;
+        return this;
+    }
+
+    /**
+     * Sets this vector from the given float array. The array must have at least two values.
+     *
+     * @param values The array of floats.
+     * @return This vector for chaining.
+     */
+    public Vector2f set(float[] values) {
+        this.x = values[0];
+        this.y = values[1];
+        return this;
+    }
+
+    @Override
+    public Vector2f set(Vector2f v) {
+        this.x = v.x;
+        this.y = v.y;
+        return this;
+    }
+
+    /**
+     * Sets this vector from the given 4D vector. The z component is discarded.
+     *
+     * @param v The vector.
+     * @return This vector for chaining.
+     */
+    public Vector2f set(Vector3f v) {
+        this.x = v.x;
+        this.y = v.y;
+        return this;
+    }
+
+    /**
+     * Sets this vector from the given 4D vector. The z and w components are discarded.
+     *
+     * @param v The vector.
+     * @return This vector for chaining.
+     */
+    public Vector2f set(Vector4f v) {
+        this.x = v.x;
+        this.y = v.y;
         return this;
     }
 
@@ -78,9 +201,9 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     @Override
-    public Vector2f set(Vector2f v) {
-        this.x = v.x;
-        this.y = v.y;
+    public Vector2f setZero() {
+        this.x = 0;
+        this.y = 0;
         return this;
     }
 
@@ -94,6 +217,24 @@ public class Vector2f implements Vector<Vector2f> {
         return this;
     }
 
+    /**
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @return The length of the given vector.
+     */
+    public static float len(float x, float y) {
+        return (float) Math.sqrt(x * x + y * y);
+    }
+
+    /**
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @return The square of the length of the given vector.
+     */
+    public static float len2(float x, float y) {
+        return x * x + y * y;
+    }
+
     @Override
     public float len() {
         return (float) Math.sqrt(x * x + y * y);
@@ -105,9 +246,93 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     @Override
+    public Vector2f limit(float limit) {
+        float len2 = x * x + y * y;
+        if (len2 > limit * limit) {
+            float alpha = limit / (float) Math.sqrt(len2);
+            this.x *= alpha;
+            this.y *= alpha;
+        }
+        return this;
+    }
+
+    @Override
+    public Vector2f limit2(float limit2) {
+        float len2 = x * x + y * y;
+        if (len2 > limit2) {
+            float alpha = (float) Math.sqrt(limit2 / len2);
+            this.x *= alpha;
+            this.y *= alpha;
+        }
+        return this;
+    }
+
+    @Override
+    public Vector2f setLength(float length) {
+        float oldLen = (float) Math.sqrt(x * x + y * y);
+        float alpha = length / oldLen;
+        this.x *= alpha;
+        this.y *= alpha;
+        return this;
+    }
+
+    @Override
+    public Vector2f setLength2(float length2) {
+        float oldLen2 = x * x + y * y;
+        float alpha = (float) Math.sqrt(length2 / oldLen2);
+        this.x *= alpha;
+        this.y *= alpha;
+        return this;
+    }
+
+    @Override
+    public Vector2f clamp(float minLength, float maxLength) {
+        float len2 = len2();
+        if (len2 == 0.0f) return this;
+
+        float max2 = maxLength * maxLength;
+        if (len2 > max2) {
+            float alpha = (float) Math.sqrt(max2 / len2);
+            this.x *= alpha;
+            this.y *= alpha;
+            return this;
+        }
+
+        float min2 = minLength * minLength;
+        if (len2 < min2) {
+            float alpha = (float) Math.sqrt(min2 / len2);
+            this.x *= alpha;
+            this.y *= alpha;
+            return this;
+        }
+
+        return this;
+    }
+
+    @Override
     public Vector2f add(Vector2f v) {
         this.x += v.x;
         this.y += v.y;
+        return this;
+    }
+
+    @Override
+    public Vector2f add(float v) {
+        this.x += v;
+        this.y += v;
+        return this;
+    }
+
+    /**
+     * Adds the given vector to this vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector2f add(float x, float y) {
+        this.x += x;
+        this.y += y;
         return this;
     }
 
@@ -119,6 +344,26 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     @Override
+    public Vector2f sub(float v) {
+        this.x -= v;
+        this.y -= v;
+        return this;
+    }
+
+    /**
+     * Subtracts the given vector from this vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector2f sub(float x, float y) {
+        this.x -= x;
+        this.y -= y;
+        return this;
+    }
+
+    @Override
     public Vector2f scl(float scalar) {
         this.x *= scalar;
         this.y *= scalar;
@@ -126,28 +371,42 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     /**
-     * Individually scales the coordinates of this vector.
-     * @param scaleX The x coordinate scale.
-     * @param scaleY The y coordinate scale.
+     * Performs a component-wise multiplication (Hadamard product) of this vector and the given vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
      * @return This vector for chaining.
      */
-    public Vector2f scl(float scaleX, float scaleY) {
-        this.x *= scaleX;
-        this.y *= scaleY;
+    public Vector2f scl(float x, float y) {
+        this.x *= x;
+        this.y *= y;
         return this;
     }
 
     @Override
-    public Vector2f mul(Vector2f v) {
+    public Vector2f scl(Vector2f v) {
         this.x *= v.x;
         this.y *= v.y;
         return this;
     }
 
     @Override
-    public Vector2f div(float divisor) {
-        this.x /= divisor;
-        this.y /= divisor;
+    public Vector2f div(float scalar) {
+        this.x /= scalar;
+        this.y /= scalar;
+        return this;
+    }
+
+    /**
+     * Performs a component-wise division of this vector and the given vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector2f div(float x, float y) {
+        this.x /= x;
+        this.y /= y;
         return this;
     }
 
@@ -159,14 +418,98 @@ public class Vector2f implements Vector<Vector2f> {
     }
 
     /**
-     * Individually divides the coordinates of this vector by the given scalars.
-     * @param scaleX The x coordinate scale.
-     * @param scaleY The y coordinate scale.
-     * @return This vector for chaining.
+     * @param v1 The first vector.
+     * @param v2 The second vector.
+     * @return The distance between the two vectors.
      */
-    public Vector2f div(float scaleX, float scaleY) {
-        this.x /= scaleX;
-        this.y /= scaleY;
+    public static float dst(Vector2f v1, Vector2f v2) {
+        float a = v2.x - v1.x;
+        float b = v2.y - v1.y;
+        return (float) Math.sqrt(a * a + b * b);
+    }
+
+    /**
+     * @return The distance between the two vectors.
+     */
+    public static float dst(
+            float x1, float y1,
+            float x2, float y2
+    ) {
+        float a = x2 - x1;
+        float b = y2 - y1;
+        return (float) Math.sqrt(a * a + b * b);
+    }
+
+    /**
+     * @param v1 The first vector.
+     * @param v2 The second vector.
+     * @return The square of the distance between the two vectors.
+     */
+    public static float dst2(Vector2f v1, Vector2f v2) {
+        float a = v2.x - v1.x;
+        float b = v2.y - v1.y;
+        return a * a + b * b;
+    }
+
+    /**
+     * @return The square of the distance between the two vectors.
+     */
+    public static float dst2(float x1, float y1, float x2, float y2) {
+        float a = x2 - x1;
+        float b = y2 - y1;
+        return a * a + b * b;
+    }
+
+    @Override
+    public float dst(Vector2f v) {
+        float a = v.x - this.x;
+        float b = v.y - this.y;
+        return (float) Math.sqrt(a * a + b * b);
+    }
+
+    /**
+     * @return The distance between the two vectors.
+     */
+    public float dst(float x, float y) {
+        float a = x - this.x;
+        float b = y - this.y;
+        return (float) Math.sqrt(a * a + b * b);
+    }
+
+    @Override
+    public float dst2(Vector2f v) {
+        float a = v.x - this.x;
+        float b = v.y - this.y;
+        return a * a + b * b;
+    }
+
+    /**
+     * @return The square of the distance between the two vectors.
+     */
+    public float dst2(float x, float y) {
+        float a = x - this.x;
+        float b = y - this.y;
+        return a * a + b * b;
+    }
+
+    @Override
+    public Vector2f lerp(Vector2f v, float alpha) {
+        this.x += alpha * (v.x - this.x);
+        this.y += alpha * (v.y - this.y);
+        return this;
+    }
+
+    @Override
+    public Vector2f addMul(Vector2f v, float scalar) {
+        this.x += v.x * scalar;
+        this.y += v.y * scalar;
+        return this;
+    }
+
+    @Override
+    public Vector2f addMul(Vector2f v, Vector2f v2) {
+        this.x += v.x * v2.x;
+        this.y += v.y * v2.y;
         return this;
     }
 
@@ -177,17 +520,68 @@ public class Vector2f implements Vector<Vector2f> {
 
     /**
      * @param v The other vector.
-     * @return The 2D-cross product of the two vectors.
+     * @return The 2D cross product (wedge product) of the two vectors.
      */
     public float crs(Vector2f v) {
         return this.x * v.y - this.y * v.x;
     }
+
 
     @Override
     public Vector2f to(Vector2f v) {
         this.x = v.x - this.x;
         this.y = v.y - this.y;
         return this;
+    }
+
+    @Override
+    public boolean isOnLine(Vector2f v) {
+        return this.x * v.y - this.y * v.x == 0;
+    }
+
+    @Override
+    public boolean isOnLine(Vector2f v, float epsilon) {
+        return Math.abs(this.x * v.y - this.y * v.x) <= epsilon;
+    }
+
+    @Override
+    public boolean isCollinear(Vector2f v) {
+        return (this.x * v.y - this.y * v.x == 0) && (this.x * v.x + this.y * v.y > 0);
+    }
+
+    @Override
+    public boolean isCollinear(Vector2f v, float epsilon) {
+        return Math.abs(this.x * v.y - this.y * v.x) < epsilon && (this.x * v.x + this.y * v.y > 0);
+    }
+
+    @Override
+    public boolean isCollinearOpposite(Vector2f v) {
+        return (this.x * v.y - this.y * v.x == 0) && (this.x * v.x + this.y * v.y < 0);
+    }
+
+    @Override
+    public boolean isCollinearOpposite(Vector2f v, float epsilon) {
+        return Math.abs(this.x * v.y - this.y * v.x) < epsilon && (this.x * v.x + this.y * v.y < 0);
+    }
+
+    @Override
+    public boolean isOrthogonal(Vector2f v) {
+        return this.x * v.x + this.y * v.y == 0;
+    }
+
+    @Override
+    public boolean isOrthogonal(Vector2f v, float epsilon) {
+        return Math.abs(this.x * v.x + this.y * v.y) < epsilon;
+    }
+
+    @Override
+    public boolean hasSameDirection(Vector2f v) {
+        return this.x * v.x + this.y * v.y > 0;
+    }
+
+    @Override
+    public boolean hasOppositeDirection(Vector2f v) {
+        return this.x * v.x + this.y * v.y < 0;
     }
 
     @Override
@@ -198,23 +592,5 @@ public class Vector2f implements Vector<Vector2f> {
     @Override
     public boolean isZero() {
         return x == 0f && y == 0.0f;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vector2f vector2f = (Vector2f) o;
-        return Float.compare(x, vector2f.x) == 0 && Float.compare(y, vector2f.y) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
-
-    @Override
-    public String toString() {
-        return "v2f(x=" + x + ", y=" + y + ")";
     }
 }
