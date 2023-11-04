@@ -183,7 +183,7 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public String toString() {
-        return "v3f(x=" + x + ", y=" + y + ", z=" + z + ", w=" + w + ")";
+        return "v4f(x=" + x + ", y=" + y + ", z=" + z + ", w=" + w + ")";
     }
 
     @Override
