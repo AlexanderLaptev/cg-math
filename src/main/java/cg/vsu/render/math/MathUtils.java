@@ -9,12 +9,12 @@ public class MathUtils {
     /**
      * The default float epsilon value used for equality comparisons.
      */
-    public static final float EPSILON = 1E-7f;
+    public static final float EPSILON = 1E-5f;
 
     /**
      * The default double epsilon value used for equality comparisons.
      */
-    public static final double EPSILON_D = 1E-15;
+    public static final double EPSILON_D = 1E-10;
 
     /**
      * The single-precision floating point value of pi (the ratio
