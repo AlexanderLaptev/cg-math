@@ -492,6 +492,20 @@ public class Vector2f implements Vector<Vector2f> {
         return a * a + b * b;
     }
 
+    /**
+     * Linearly interpolates between the first vector and the second vector based on the alpha coefficient.
+     *
+     * @param v1    The first vector.
+     * @param v2    The second vector.
+     * @param alpha The alpha coefficient.
+     * @return The result of the linear interpolation.
+     */
+    public static Vector2f lerp(Vector2f v1, Vector2f v2, float alpha) {
+        float x = v1.x + alpha * (v2.x - v1.x);
+        float y = v1.y + alpha * (v2.y - v1.y);
+        return new Vector2f(x, y);
+    }
+
     @Override
     public Vector2f lerp(Vector2f v, float alpha) {
         this.x += alpha * (v.x - this.x);
@@ -526,6 +540,18 @@ public class Vector2f implements Vector<Vector2f> {
         return this.x * v.y - this.y * v.x;
     }
 
+    /**
+     * Sets this vector to the vector from this vector to the specified vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector2f to(float x, float y) {
+        this.x = x - this.x;
+        this.y = y - this.y;
+        return this;
+    }
 
     @Override
     public Vector2f to(Vector2f v) {

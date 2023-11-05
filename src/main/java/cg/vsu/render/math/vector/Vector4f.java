@@ -675,6 +675,22 @@ public class Vector4f implements Vector<Vector4f> {
         return a * a + b * b + c * c + d * d;
     }
 
+    /**
+     * Linearly interpolates between the first vector and the second vector based on the alpha coefficient.
+     *
+     * @param v1    The first vector.
+     * @param v2    The second vector.
+     * @param alpha The alpha coefficient.
+     * @return The result of the linear interpolation.
+     */
+    public static Vector4f lerp(Vector4f v1, Vector4f v2, float alpha) {
+        float x = v1.x + alpha * (v2.x - v1.x);
+        float y = v1.y + alpha * (v2.y - v1.y);
+        float z = v1.z + alpha * (v2.z - v1.z);
+        float w = v1.w + alpha * (v2.w - v1.w);
+        return new Vector4f(x, y, z, w);
+    }
+
     @Override
     public Vector4f lerp(Vector4f v, float alpha) {
         this.x += alpha * (v.x - this.x);
@@ -713,6 +729,23 @@ public class Vector4f implements Vector<Vector4f> {
         this.y = v.y - this.y;
         this.z = v.z - this.z;
         this.w = v.w - this.w;
+        return this;
+    }
+
+    /**
+     * Sets this vector to the vector from this vector to the specified vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
+     * @param w The w component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector4f to(float x, float y, float z, float w) {
+        this.x = x - this.x;
+        this.y = y - this.y;
+        this.z = z - this.z;
+        this.w = w - this.w;
         return this;
     }
 
@@ -779,7 +812,7 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean isUnit() {
-        return (x * x + y * y + z * z + w * w) == 1.0f;
+        return x * x + y * y + z * z + w * w == 1.0f;
     }
 
     @Override

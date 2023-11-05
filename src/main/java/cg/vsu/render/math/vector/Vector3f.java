@@ -582,6 +582,21 @@ public class Vector3f implements Vector<Vector3f> {
         return a * a + b * b + c * c;
     }
 
+    /**
+     * Linearly interpolates between the first vector and the second vector based on the alpha coefficient.
+     *
+     * @param v1    The first vector.
+     * @param v2    The second vector.
+     * @param alpha The alpha coefficient.
+     * @return The result of the linear interpolation.
+     */
+    public static Vector3f lerp(Vector3f v1, Vector3f v2, float alpha) {
+        float x = v1.x + alpha * (v2.x - v1.x);
+        float y = v1.y + alpha * (v2.y - v1.y);
+        float z = v1.z + alpha * (v2.z - v1.z);
+        return new Vector3f(x, y, z);
+    }
+
     @Override
     public Vector3f lerp(Vector3f v, float alpha) {
         this.x += alpha * (v.x - this.x);
@@ -624,6 +639,20 @@ public class Vector3f implements Vector<Vector3f> {
         return this;
     }
 
+    /**
+     * Sets this vector to the vector from this vector to the specified vector.
+     *
+     * @param x The x component of the vector.
+     * @param y The y component of the vector.
+     * @param z The z component of the vector.
+     * @return This vector for chaining.
+     */
+    public Vector3f to(float x, float y, float z) {
+        this.x = x - this.x;
+        this.y = y - this.y;
+        this.z = z - this.z;
+        return this;
+    }
 
     @Override
     public Vector3f to(Vector3f v) {
@@ -693,7 +722,7 @@ public class Vector3f implements Vector<Vector3f> {
 
     @Override
     public boolean isUnit() {
-        return (x * x + y * y + z * z) == 1.0f;
+        return x * x + y * y + z * z == 1.0f;
     }
 
     @Override
