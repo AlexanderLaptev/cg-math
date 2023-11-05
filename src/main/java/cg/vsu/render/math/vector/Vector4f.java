@@ -772,42 +772,42 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean isCollinear(Vector4f v) {
-        return isOnLine(v) && (this.x * v.x + this.y * v.y > 0);
+        return isOnLine(v) && (this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w > 0);
     }
 
     @Override
     public boolean isCollinear(Vector4f v, float epsilon) {
-        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y > 0);
+        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w > 0);
     }
 
     @Override
     public boolean isCollinearOpposite(Vector4f v) {
-        return isOnLine(v) && (this.x * v.x + this.y * v.y < 0);
+        return isOnLine(v) && (this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w < 0);
     }
 
     @Override
     public boolean isCollinearOpposite(Vector4f v, float epsilon) {
-        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y < 0);
+        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w < 0);
     }
 
     @Override
     public boolean isOrthogonal(Vector4f v) {
-        return this.x * v.x + this.y * v.y == 0;
+        return this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w == 0;
     }
 
     @Override
     public boolean isOrthogonal(Vector4f v, float epsilon) {
-        return Math.abs(this.x * v.x + this.y * v.y) < epsilon;
+        return Math.abs(this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w) < epsilon;
     }
 
     @Override
     public boolean hasSameDirection(Vector4f v) {
-        return this.x * v.x + this.y * v.y > 0;
+        return this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w > 0;
     }
 
     @Override
     public boolean hasOppositeDirection(Vector4f v) {
-        return this.x * v.x + this.y * v.y < 0;
+        return this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w < 0;
     }
 
     @Override

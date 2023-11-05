@@ -682,42 +682,42 @@ public class Vector3f implements Vector<Vector3f> {
 
     @Override
     public boolean isCollinear(Vector3f v) {
-        return isOnLine(v) && (this.x * v.x + this.y * v.y > 0);
+        return isOnLine(v) && (this.x * v.x + this.y * v.y + this.z * v.z > 0);
     }
 
     @Override
     public boolean isCollinear(Vector3f v, float epsilon) {
-        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y > 0);
+        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y + this.z * v.z > 0);
     }
 
     @Override
     public boolean isCollinearOpposite(Vector3f v) {
-        return isOnLine(v) && (this.x * v.x + this.y * v.y < 0);
+        return isOnLine(v) && (this.x * v.x + this.y * v.y + this.z * v.z < 0);
     }
 
     @Override
     public boolean isCollinearOpposite(Vector3f v, float epsilon) {
-        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y < 0);
+        return isOnLine(v, epsilon) && (this.x * v.x + this.y * v.y + this.z * v.z < 0);
     }
 
     @Override
     public boolean isOrthogonal(Vector3f v) {
-        return this.x * v.x + this.y * v.y == 0;
+        return this.x * v.x + this.y * v.y + this.z * v.z == 0;
     }
 
     @Override
     public boolean isOrthogonal(Vector3f v, float epsilon) {
-        return Math.abs(this.x * v.x + this.y * v.y) < epsilon;
+        return Math.abs(this.x * v.x + this.y * v.y + this.z * v.z) < epsilon;
     }
 
     @Override
     public boolean hasSameDirection(Vector3f v) {
-        return this.x * v.x + this.y * v.y > 0;
+        return this.x * v.x + this.y * v.y + this.z * v.z > 0;
     }
 
     @Override
     public boolean hasOppositeDirection(Vector3f v) {
-        return this.x * v.x + this.y * v.y < 0;
+        return this.x * v.x + this.y * v.y + this.z * v.z < 0;
     }
 
     @Override
