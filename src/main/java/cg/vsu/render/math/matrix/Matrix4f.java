@@ -128,7 +128,15 @@ public class Matrix4f implements Matrix<Matrix4f> {
         return this;
     }
 
-    @Override
+    /**
+     * Sets this matrix from the given vectors.
+     *
+     * @param i The vector in the first column.
+     * @param j The vector in the second column.
+     * @param k The vector in the third column.
+     * @param l The vector in the fourth column.
+     * @return This matrix for chaining.
+     */
     public Matrix4f set(Vector4f i, Vector4f j, Vector4f k, Vector4f l) {
         val[M11] = i.x;
         val[M21] = i.y;

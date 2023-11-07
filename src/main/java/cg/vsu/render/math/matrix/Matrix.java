@@ -45,17 +45,6 @@ public interface Matrix<T extends Matrix<T>> {
     T set(T m);
 
     /**
-     * Sets this matrix from the given vectors.
-     *
-     * @param i The vector in the first column.
-     * @param j The vector in the second column.
-     * @param k The vector in the third column.
-     * @param l The vector in the fourth column.
-     * @return This matrix for chaining.
-     */
-    T set(Vector4f i, Vector4f j, Vector4f k, Vector4f l);
-
-    /**
      * Fills this matrix with the specified scalar value.
      *
      * @param scalar The scalar.
