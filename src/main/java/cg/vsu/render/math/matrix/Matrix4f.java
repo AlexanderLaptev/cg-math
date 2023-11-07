@@ -25,11 +25,12 @@ public class Matrix4f implements Matrix<Matrix4f> {
     public static final int M42 = 7;
     public static final int M43 = 11;
     public static final int M44 = 15;
+    public static final int LEN = 16;
 
     /**
      * The one-dimensional column-major array of scalars stored in this matrix.
      */
-    public float[] val = new float[16];
+    public float[] val = new float[LEN];
 
     /**
      * Creates a new identity matrix.
@@ -64,7 +65,7 @@ public class Matrix4f implements Matrix<Matrix4f> {
      * @throws ArrayIndexOutOfBoundsException if there are not enough values in the array.
      */
     public Matrix4f(float[] values) {
-        System.arraycopy(values, 0, this.val, 0, 16);
+        System.arraycopy(values, 0, this.val, 0, LEN);
     }
 
     @SuppressWarnings("CopyConstructorMissesField")
@@ -91,7 +92,7 @@ public class Matrix4f implements Matrix<Matrix4f> {
 
     @Override
     public Matrix4f setZero() {
-        for (int i = 0; i < 16; i++) val[i] = 0.0f;
+        for (int i = 0; i < LEN; i++) val[i] = 0.0f;
         return this;
     }
 
@@ -118,13 +119,13 @@ public class Matrix4f implements Matrix<Matrix4f> {
 
     @Override
     public Matrix4f set(float[] values) {
-        System.arraycopy(values, 0, this.val, 0, 16);
+        System.arraycopy(values, 0, this.val, 0, LEN);
         return this;
     }
 
     @Override
     public Matrix4f set(Matrix4f m) {
-        System.arraycopy(m.val, 0, this.val, 0, 16);
+        System.arraycopy(m.val, 0, this.val, 0, LEN);
         return this;
     }
 
@@ -159,7 +160,7 @@ public class Matrix4f implements Matrix<Matrix4f> {
 
     @Override
     public Matrix4f fill(float scalar) {
-        for (int i = 0; i < 16; i++) val[i] = scalar;
+        for (int i = 0; i < LEN; i++) val[i] = scalar;
         return this;
     }
 
@@ -264,25 +265,25 @@ public class Matrix4f implements Matrix<Matrix4f> {
 
     @Override
     public Matrix4f add(Matrix4f m) {
-        for (int i = 0; i < 16; i++) this.val[i] += m.val[i];
+        for (int i = 0; i < LEN; i++) this.val[i] += m.val[i];
         return this;
     }
 
     @Override
     public Matrix4f sub(Matrix4f m) {
-        for (int i = 0; i < 16; i++) this.val[i] -= m.val[i];
+        for (int i = 0; i < LEN; i++) this.val[i] -= m.val[i];
         return this;
     }
 
     @Override
     public Matrix4f mul(float scalar) {
-        for (int i = 0; i < 16; i++) this.val[i] *= scalar;
+        for (int i = 0; i < LEN; i++) this.val[i] *= scalar;
         return this;
     }
 
     @Override
     public Matrix4f div(float scalar) {
-        for (int i = 0; i < 16; i++) this.val[i] /= scalar;
+        for (int i = 0; i < LEN; i++) this.val[i] /= scalar;
         return this;
     }
 
@@ -326,13 +327,13 @@ public class Matrix4f implements Matrix<Matrix4f> {
 
     @Override
     public Matrix4f comMul(Matrix4f m) {
-        for (int i = 0; i < 16; i++) this.val[i] *= m.val[i];
+        for (int i = 0; i < LEN; i++) this.val[i] *= m.val[i];
         return this;
     }
 
     @Override
     public Matrix4f comDiv(Matrix4f m) {
-        for (int i = 0; i < 16; i++) this.val[i] /= m.val[i];
+        for (int i = 0; i < LEN; i++) this.val[i] /= m.val[i];
         return this;
     }
 
@@ -382,7 +383,7 @@ public class Matrix4f implements Matrix<Matrix4f> {
     public boolean epsEquals(Matrix4f m, float epsilon) {
         if (this == m) return true;
         if (m == null) return false;
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < LEN; i++) {
             if (Math.abs(val[i] - m.val[i]) > epsilon) return false;
         }
         return true;
