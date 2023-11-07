@@ -137,6 +137,14 @@ public class Vector2f implements Vector<Vector2f> {
         return new Vector2f(this.x, this.y);
     }
 
+    @Override
+    public float[] toArray() {
+        float[] result = new float[2];
+        result[0] = x;
+        result[1] = y;
+        return result;
+    }
+
     /**
      * Sets the components of this vector to the specified values.
      *

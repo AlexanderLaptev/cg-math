@@ -30,6 +30,13 @@ public interface Vector<T extends Vector<T>> {
     T cpy();
 
     /**
+     * Converts this vector to an array of floats. The array has the same size as the dimension of this vector.
+     *
+     * @return The array of floats.
+     */
+    float[] toArray();
+
+    /**
      * Sets the components of this vector to the components of the given vector.
      * @param v The other vector.
      * @return This vector for chaining.

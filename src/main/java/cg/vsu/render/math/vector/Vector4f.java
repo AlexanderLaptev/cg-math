@@ -204,6 +204,16 @@ public class Vector4f implements Vector<Vector4f> {
         return new Vector4f(this.x, this.y, this.z, this.w);
     }
 
+    @Override
+    public float[] toArray() {
+        float[] result = new float[4];
+        result[0] = x;
+        result[1] = y;
+        result[2] = z;
+        result[3] = w;
+        return result;
+    }
+
     /**
      * Sets the components of this vector to the specified values.
      *

@@ -169,6 +169,15 @@ public class Vector3f implements Vector<Vector3f> {
         return new Vector3f(this.x, this.y, this.z);
     }
 
+    @Override
+    public float[] toArray() {
+        float[] result = new float[3];
+        result[0] = x;
+        result[1] = y;
+        result[2] = z;
+        return result;
+    }
+
     /**
      * Sets the components of this vector to the specified values.
      *
