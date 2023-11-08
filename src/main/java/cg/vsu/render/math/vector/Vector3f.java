@@ -642,9 +642,12 @@ public class Vector3f implements Vector<Vector3f> {
      * @return This vector for chaining.
      */
     public Vector3f crs(Vector3f v) {
-        this.x = this.y * v.z - this.z * v.y;
-        this.y = this.z * v.x - this.x * v.z;
-        this.z = this.x * v.y - this.y * v.x;
+        float ax = this.x;
+        float ay = this.y;
+        float az = this.z;
+        this.x = ay * v.z - az * v.y;
+        this.y = az * v.x - ax * v.z;
+        this.z = ax * v.y - ay * v.x;
         return this;
     }
 
