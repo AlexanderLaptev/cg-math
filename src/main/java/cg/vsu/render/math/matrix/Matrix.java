@@ -1,7 +1,5 @@
 package cg.vsu.render.math.matrix;
 
-import cg.vsu.render.math.vector.Vector4f;
-
 /**
  * A mutable square matrix.
  *

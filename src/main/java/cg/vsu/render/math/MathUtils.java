@@ -57,12 +57,13 @@ public class MathUtils {
      */
     public static final float DEG_TO_RAD = PI / 180.0f;
 
-    private MathUtils() {}
+    private MathUtils() { }
 
     /**
      * Performs an accurate floating-point equals comparison using epsilon.
-     * @param a The first value.
-     * @param b The second value.
+     *
+     * @param a       The first value.
+     * @param b       The second value.
      * @param epsilon The epsilon value.
      * @return Whether the two given values are nearly equal.
      */
@@ -73,6 +74,7 @@ public class MathUtils {
 
     /**
      * Performs an accurate floating-point equals comparison using epsilon.
+     *
      * @param a The first value.
      * @param b The second value.
      * @return Whether the two given values are nearly equal.
@@ -83,8 +85,9 @@ public class MathUtils {
 
     /**
      * Performs an accurate floating-point equals comparison using epsilon.
-     * @param a The first value.
-     * @param b The second value.
+     *
+     * @param a       The first value.
+     * @param b       The second value.
      * @param epsilon The epsilon value.
      * @return Whether the two given values are nearly equal.
      */
@@ -95,6 +98,7 @@ public class MathUtils {
 
     /**
      * Performs an accurate floating-point equals comparison using epsilon.
+     *
      * @param a The first value.
      * @param b The second value.
      * @return Whether the two given values are nearly equal.
@@ -105,8 +109,9 @@ public class MathUtils {
 
     /**
      * Linear interpolation between two values.
-     * @param a The first value.
-     * @param b The second value.
+     *
+     * @param a     The first value.
+     * @param b     The second value.
      * @param alpha The interpolation coefficient.
      * @return The interpolated value.
      */
@@ -116,8 +121,9 @@ public class MathUtils {
 
     /**
      * Linear interpolation between two values.
-     * @param a The first value.
-     * @param b The second value.
+     *
+     * @param a     The first value.
+     * @param b     The second value.
      * @param alpha The interpolation coefficient.
      * @return The interpolated value.
      */
@@ -127,7 +133,8 @@ public class MathUtils {
 
     /**
      * Clamps the given value between min and max.
-     * @param v The value to clamp.
+     *
+     * @param v   The value to clamp.
      * @param min The min value.
      * @param max The max value.
      * @return The clamped value.
@@ -140,7 +147,8 @@ public class MathUtils {
 
     /**
      * Clamps the given value between min and max.
-     * @param v The value to clamp.
+     *
+     * @param v   The value to clamp.
      * @param min The min value.
      * @param max The max value.
      * @return The clamped value.
@@ -153,7 +161,8 @@ public class MathUtils {
 
     /**
      * Clamps the given value between min and max.
-     * @param v The value to clamp.
+     *
+     * @param v   The value to clamp.
      * @param min The min value.
      * @param max The max value.
      * @return The clamped value.
@@ -166,7 +175,8 @@ public class MathUtils {
 
     /**
      * Clamps the given value between min and max.
-     * @param v The value to clamp.
+     *
+     * @param v   The value to clamp.
      * @param min The min value.
      * @param max The max value.
      * @return The clamped value.
@@ -179,7 +189,8 @@ public class MathUtils {
 
     /**
      * Clamps the given value between min and max.
-     * @param v The value to clamp.
+     *
+     * @param v   The value to clamp.
      * @param min The min value.
      * @param max The max value.
      * @return The clamped value.
@@ -192,6 +203,7 @@ public class MathUtils {
 
     /**
      * Clamps the given value between 0 and 1.
+     *
      * @param v The value to clamp.
      * @return The clamped value.
      */
@@ -203,6 +215,7 @@ public class MathUtils {
 
     /**
      * Clamps the given value between 0 and 1.
+     *
      * @param v The value to clamp.
      * @return The clamped value.
      */
@@ -214,9 +227,10 @@ public class MathUtils {
 
     /**
      * Maps the given value from one range to another.
-     * @param v The value to map.
-     * @param inMin The start of the input range.
-     * @param inMax The end of the input range.
+     *
+     * @param v      The value to map.
+     * @param inMin  The start of the input range.
+     * @param inMax  The end of the input range.
      * @param outMin The start of the output range.
      * @param outMax The end of the output range.
      * @return The mapped value.

@@ -38,6 +38,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Sets the components of this vector to the components of the given vector.
+     *
      * @param v The other vector.
      * @return This vector for chaining.
      */
@@ -45,12 +46,14 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Sets the components of this vector to the given value.
+     *
      * @return This vector for chaining.
      */
     T set(float v);
 
     /**
      * Normalizes the given vector. Does nothing if the length is zero.
+     *
      * @return This vector for chaining.
      */
     T nor();
@@ -63,12 +66,14 @@ public interface Vector<T extends Vector<T>> {
     /**
      * This method avoids calculating the square root, which is faster.
      * This method should generally be preferred when doing comparisons.
+     *
      * @return The squared length of this vector.
      */
     float len2();
 
     /**
      * Limits the length of this vector based on the desired maximum length.
+     *
      * @param limit The maximum length of this vector.
      * @return This vector for chaining.
      */
@@ -76,6 +81,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Limits the length of this vector based on the square of the desired maximum length.
+     *
      * @param limit2 The square of the maximum length of this vector.
      * @return This vector for chaining.
      */
@@ -83,6 +89,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Sets the length of this vector.
+     *
      * @param length The desired length of this vector.
      * @return This vector for chaining.
      */
@@ -90,6 +97,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Sets the square of the length of this vector.
+     *
      * @param length2 The desired square of the length of this vector.
      * @return This vector for chaining.
      */
@@ -106,6 +114,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Adds the given vector to this vector.
+     *
      * @param v The vector to add.
      * @return This vector for chaining.
      */
@@ -113,6 +122,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Adds the given value to each of the components of this vector.
+     *
      * @param v The value to add.
      * @return This vector for chaining.
      */
@@ -120,6 +130,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Subtracts the given vector from this vector.
+     *
      * @param v The vector to subtract.
      * @return This vector for chaining.
      */
@@ -127,6 +138,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Subtracts the given value from each of the components of this vector.
+     *
      * @param v The value to subtract.
      * @return This vector for chaining.
      */
@@ -134,6 +146,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Scales this vector by the given scalar.
+     *
      * @param scalar The scalar.
      * @return This vector for chaining.
      */
@@ -141,6 +154,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Performs a component-wise multiplication (Hadamard product) of this vector and the other vector.
+     *
      * @param v The other vector.
      * @return This vector for chaining.
      */
@@ -148,6 +162,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Individually divides each component of this vector by the given scalar.
+     *
      * @param divisor The scalar.
      * @return This vector for chaining.
      */
@@ -155,6 +170,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Performs a component-wise division of this vector and the other vector.
+     *
      * @param v The other vector.
      * @return This vector for chaining.
      */
@@ -174,7 +190,8 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Linearly interpolates between this vector and the other vector based on the alpha coefficient.
-     * @param v The other vector.
+     *
+     * @param v     The other vector.
      * @param alpha The alpha coefficient.
      * @return This vector for chaining.
      */
@@ -182,7 +199,8 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Scales the given vector and adds it to this vector.
-     * @param v The given vector.
+     *
+     * @param v      The given vector.
      * @param scalar The scale of the given vector.
      * @return This vector for chaining.
      */
@@ -190,7 +208,8 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Performs a component-wise multiplication of the two given vectors and adds the result to this vector.
-     * @param v The first vector.
+     *
+     * @param v  The first vector.
      * @param v2 The second vector.
      * @return This vector for chaining.
      */
@@ -204,6 +223,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Sets this vector to the vector from this vector to the other vector.
+     *
      * @param v The other vector.
      * @return This vector for chaining.
      */
@@ -216,7 +236,7 @@ public interface Vector<T extends Vector<T>> {
     boolean isOnLine(T v);
 
     /**
-     * @param v The other vector.
+     * @param v       The other vector.
      * @param epsilon The epsilon value.
      * @return Whether this vector is approximately parallel to the given vector, regardless of the direction.
      */
@@ -229,7 +249,7 @@ public interface Vector<T extends Vector<T>> {
     boolean isCollinear(T v);
 
     /**
-     * @param v The other vector.
+     * @param v       The other vector.
      * @param epsilon The epsilon value.
      * @return Whether this vector is approximately collinear to the other vector and has the same direction.
      */
@@ -242,7 +262,7 @@ public interface Vector<T extends Vector<T>> {
     boolean isCollinearOpposite(T v);
 
     /**
-     * @param v The other vector.
+     * @param v       The other vector.
      * @param epsilon The epsilon value.
      * @return Whether this vector is approximately collinear to the other vector and has the opposite direction.
      */
@@ -255,7 +275,7 @@ public interface Vector<T extends Vector<T>> {
     boolean isOrthogonal(T v);
 
     /**
-     * @param v The other vector.
+     * @param v       The other vector.
      * @param epsilon The epsilon value.
      * @return Whether this vector is approximately orthogonal to the other vector (i.e. their dot product is =0).
      */
@@ -285,6 +305,7 @@ public interface Vector<T extends Vector<T>> {
 
     /**
      * Sets this vector to zero.
+     *
      * @return This vector for chaining.
      */
     T setZero();

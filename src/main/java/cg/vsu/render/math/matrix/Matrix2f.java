@@ -182,10 +182,10 @@ public class Matrix2f implements Matrix<Matrix2f> {
 
     @Override
     public Matrix2f mul(Matrix2f m) {
-        float m11 = val[M11] * m.val[M11] + val[M12] * m.val[M21] ;
-        float m12 = val[M11] * m.val[M12] + val[M12] * m.val[M22] ;
-        float m21 = val[M21] * m.val[M11] + val[M22] * m.val[M21] ;
-        float m22 = val[M21] * m.val[M12] + val[M22] * m.val[M22] ;
+        float m11 = val[M11] * m.val[M11] + val[M12] * m.val[M21];
+        float m12 = val[M11] * m.val[M12] + val[M12] * m.val[M22];
+        float m21 = val[M21] * m.val[M11] + val[M22] * m.val[M21];
+        float m22 = val[M21] * m.val[M12] + val[M22] * m.val[M22];
 
         val[M11] = m11;
         val[M12] = m12;
