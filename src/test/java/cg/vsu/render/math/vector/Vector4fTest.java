@@ -304,7 +304,7 @@ class Vector4fTest {
         v.set(1.0f, 1.0f, 3.0f, 5.0f);
         float len = v.len();
 
-        assertEquals(len * len,  v.len2());
+        assertEquals(len * len, v.len2());
     }
 
     @Test
@@ -341,7 +341,7 @@ class Vector4fTest {
     @Test
     void testLimit2Ineffective() {
         v = new Vector4f(3.0f, 2.0f, 0.0f, 0.0f);
-        v.limit(10.0f);
+        v.limit2(200.0f);
         assertEquals(13.0f, v.len2());
     }
 
