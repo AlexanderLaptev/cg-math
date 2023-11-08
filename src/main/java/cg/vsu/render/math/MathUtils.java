@@ -9,7 +9,7 @@ public class MathUtils {
     /**
      * The default float epsilon value used for equality comparisons.
      */
-    public static final float EPSILON = 1E-5f;
+    public static final float EPSILON = 1E-4f;
 
     /**
      * The default double epsilon value used for equality comparisons.
