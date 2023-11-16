@@ -281,4 +281,15 @@ class Matrix4fTest {
 
         assertEquals(v1, v2);
     }
+
+    @Test
+    void additionIsCommutative() {
+        m1.set(VALUES_1);
+        m2.set(VALUES_2);
+
+        var r1 = m2.cpy().add(m1);
+        var r2 = m1.cpy().add(m2);
+
+        assertEquals(r1, r2);
+    }
 }
