@@ -1,6 +1,7 @@
 package cg.vsu.render.math.matrix;
 
 import cg.vsu.render.math.MathUtils;
+import cg.vsu.render.math.vector.Vector2f;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -131,5 +132,14 @@ class Matrix2fTest {
         m1.comMul(m2).comDiv(m2);
 
         assertEquals(new Matrix2f(VALUES_1), m1);
+    }
+
+    @Test
+    void identityDoesNotChangeVector() {
+        m1.setIdentity();
+        Vector2f v = new Vector2f(-21.256f, 18.444f);
+        var r = m1.mul(v);
+
+        assertEquals(v, r);
     }
 }
