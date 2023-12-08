@@ -1,5 +1,7 @@
 package cg.vsu.render.math.vector;
 
+import cg.vsu.render.math.MathUtils;
+
 import java.util.Objects;
 
 /**
@@ -163,7 +165,7 @@ public class Vector4f implements Vector<Vector4f> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vector4f v = (Vector4f) o;
-        return this.x == v.x && this.y == v.y && this.z == v.z && this.w == v.w;
+        return this.idt(v);
     }
 
     @Override
@@ -173,7 +175,7 @@ public class Vector4f implements Vector<Vector4f> {
         if (Math.abs(this.x - v.x) > epsilon) return false;
         if (Math.abs(this.y - v.y) > epsilon) return false;
         if (Math.abs(this.z - v.z) > epsilon) return false;
-        return !(Math.abs(this.w - v.w) > epsilon);
+        return Math.abs(this.w - v.w) <= epsilon;
     }
 
     @Override
@@ -188,7 +190,7 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean idt(Vector4f v) {
-        return this.x == v.x && this.y == v.y && this.z == v.z && this.w == v.w;
+        return epsIdt(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -196,7 +198,7 @@ public class Vector4f implements Vector<Vector4f> {
         if (Math.abs(this.x - v.x) > epsilon) return false;
         if (Math.abs(this.y - v.y) > epsilon) return false;
         if (Math.abs(this.z - v.z) > epsilon) return false;
-        return !(Math.abs(this.w - v.w) > epsilon);
+        return Math.abs(this.w - v.w) <= epsilon;
     }
 
     @Override
@@ -761,11 +763,7 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean isOnLine(Vector4f v) {
-        float a = v.x / this.x;
-        float b = v.y / this.y;
-        float c = v.z / this.z;
-        float d = v.w / this.w;
-        return a == b && b == c && c == d && a == d;
+        return isOnLine(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -782,7 +780,7 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean isCollinear(Vector4f v) {
-        return isOnLine(v) && (this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w > 0);
+        return isCollinear(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -792,7 +790,7 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean isCollinearOpposite(Vector4f v) {
-        return isOnLine(v) && (this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w < 0);
+        return isCollinearOpposite(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -802,7 +800,7 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean isOrthogonal(Vector4f v) {
-        return this.x * v.x + this.y * v.y + this.z * v.z + this.w * v.w == 0;
+        return isOrthogonal(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -822,11 +820,21 @@ public class Vector4f implements Vector<Vector4f> {
 
     @Override
     public boolean isUnit() {
-        return x * x + y * y + z * z + w * w == 1.0f;
+        return isUnit(MathUtils.EPSILON);
+    }
+
+    @Override
+    public boolean isUnit(float epsilon) {
+        return MathUtils.epsEquals(x * x + y * y + z * z + w * w, 1.0f, epsilon);
     }
 
     @Override
     public boolean isZero() {
-        return x == 0f && y == 0.0f && z == 0.0f && w == 0.0f;
+        return isZero(MathUtils.EPSILON);
+    }
+
+    @Override
+    public boolean isZero(float epsilon) {
+        return MathUtils.epsEquals(x * x + y * y + z * z + w * w, 0.0f, epsilon);
     }
 }

@@ -1,5 +1,7 @@
 package cg.vsu.render.math.vector;
 
+import cg.vsu.render.math.MathUtils;
+
 import java.util.Objects;
 
 /**
@@ -100,7 +102,7 @@ public class Vector2f implements Vector<Vector2f> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vector2f v = (Vector2f) o;
-        return this.x == v.x && this.y == v.y;
+        return this.idt(v);
     }
 
     @Override
@@ -108,7 +110,7 @@ public class Vector2f implements Vector<Vector2f> {
         if (this == v) return true;
         if (v == null) return false;
         if (Math.abs(this.x - v.x) > epsilon) return false;
-        return !(Math.abs(this.y - v.y) > epsilon);
+        return Math.abs(this.y - v.y) <= epsilon;
     }
 
     @Override
@@ -123,13 +125,13 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public boolean idt(Vector2f v) {
-        return this.x == v.x && this.y == v.y;
+        return epsIdt(v, MathUtils.EPSILON);
     }
 
     @Override
     public boolean epsIdt(Vector2f v, float epsilon) {
         if (Math.abs(this.x - v.x) > epsilon) return false;
-        return !(Math.abs(this.y - v.y) > epsilon);
+        return Math.abs(this.y - v.y) <= epsilon;
     }
 
     @Override
@@ -570,7 +572,7 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public boolean isOnLine(Vector2f v) {
-        return this.x * v.y - this.y * v.x == 0;
+        return isOnLine(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -580,7 +582,7 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public boolean isCollinear(Vector2f v) {
-        return (this.x * v.y - this.y * v.x == 0) && (this.x * v.x + this.y * v.y > 0);
+        return isCollinear(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -590,7 +592,7 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public boolean isCollinearOpposite(Vector2f v) {
-        return (this.x * v.y - this.y * v.x == 0) && (this.x * v.x + this.y * v.y < 0);
+        return isCollinearOpposite(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -600,7 +602,7 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public boolean isOrthogonal(Vector2f v) {
-        return this.x * v.x + this.y * v.y == 0;
+        return isOrthogonal(v, MathUtils.EPSILON);
     }
 
     @Override
@@ -620,11 +622,20 @@ public class Vector2f implements Vector<Vector2f> {
 
     @Override
     public boolean isUnit() {
-        return (x * x + y * y) == 1.0f;
+        return isUnit(MathUtils.EPSILON);
+    }
+
+    public boolean isUnit(float epsilon) {
+        return MathUtils.epsEquals(x * x + y * y, 1.0f, epsilon);
     }
 
     @Override
     public boolean isZero() {
-        return x == 0f && y == 0.0f;
+        return isZero(MathUtils.EPSILON);
+    }
+
+    @Override
+    public boolean isZero(float epsilon) {
+        return MathUtils.epsEquals(x * x + y * y, 0.0f, epsilon);
     }
 }

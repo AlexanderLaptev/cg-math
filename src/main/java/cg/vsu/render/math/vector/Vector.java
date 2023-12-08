@@ -299,9 +299,21 @@ public interface Vector<T extends Vector<T>> {
     boolean isUnit();
 
     /**
+     * @param epsilon The epsilon value to use for comparisons.
+     * @return Whether this vector is approximately a unit vector.
+     */
+    boolean isUnit(float epsilon);
+
+    /**
      * @return Whether this vector is a zero vector.
      */
     boolean isZero();
+
+    /**
+     * @param epsilon The epsilon value to use for comparisons.
+     * @return Whether this vector is approximately a zero vector.
+     */
+    boolean isZero(float epsilon);
 
     /**
      * Sets this vector to zero.
