@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "cg.vsu.render.mathlib"
-version = "1.0.3-module"
+version = "1.2.0-module"
 
 repositories {
     mavenCentral()

@@ -59,6 +59,30 @@ public class MathUtils {
 
     private MathUtils() { }
 
+    public static float sinDeg(float degrees) {
+        return (float) Math.sin(degrees * DEG_TO_RAD);
+    }
+
+    public static float sinRad(float radians) {
+        return (float) Math.sin(radians);
+    }
+
+    public static float cosDeg(float degrees) {
+        return (float) Math.cos(degrees * DEG_TO_RAD);
+    }
+
+    public static float cosRad(float radians) {
+        return (float) Math.cos(radians);
+    }
+
+    public static float tanDeg(float degrees) {
+        return (float) Math.tan(degrees * DEG_TO_RAD);
+    }
+
+    public static float tanRad(float radians) {
+        return (float) Math.tan(radians);
+    }
+
     /**
      * Performs an accurate floating-point equals comparison using epsilon.
      *
