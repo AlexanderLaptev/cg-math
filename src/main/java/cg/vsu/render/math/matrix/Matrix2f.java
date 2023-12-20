@@ -213,21 +213,10 @@ public class Matrix2f implements Matrix<Matrix2f> {
      * @return The changed given vector.
      */
     public Vector2f mul(Vector2f v) {
-        v.x = val[M11] * v.x + val[M12] * v.y;
-        v.y = val[M21] * v.x + val[M22] * v.y;
-        return v;
-    }
-
-    /**
-     * Multiplies the given row vector by the given matrix.
-     *
-     * @param v The vector.
-     * @param m The matrix.
-     * @return The changed vector.
-     */
-    public static Vector2f mul(Vector2f v, Matrix2f m) {
-        v.x = m.val[M11] * v.x + m.val[M21] * v.y;
-        v.y = m.val[M12] * v.x + m.val[M22] * v.y;
+        float x = v.x;
+        float y = v.y;
+        v.x = val[M11] * x + val[M12] * y;
+        v.y = val[M21] * x + val[M22] * y;
         return v;
     }
 

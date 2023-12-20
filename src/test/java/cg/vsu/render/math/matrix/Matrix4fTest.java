@@ -283,6 +283,23 @@ class Matrix4fTest {
     }
 
     @Test
+    void testMatrixTimesVector() {
+        m1.set(new float[]{
+                0.0f, 3.0f, 7.0f, -2.0f,
+                2.0f, -4.0f, 0.0f, 8.0f,
+                3.0f, -2.0f, 1.0f, 3.0f,
+                9.0f, 4.0f, 2.0f, 1.0f
+        });
+        Vector4f v = new Vector4f(3.0f, -4.0f, 5.0f, 7.0f);
+        m1.mul(v);
+
+        assertEquals(
+                new Vector4f(70.0f, 43.0f, 40.f, -16.0f),
+                v
+        );
+    }
+
+    @Test
     void additionIsCommutative() {
         m1.set(VALUES_1);
         m2.set(VALUES_2);

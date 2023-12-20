@@ -344,25 +344,14 @@ public class Matrix4f implements Matrix<Matrix4f> {
      * @return The changed given vector.
      */
     public Vector4f mul(Vector4f v) {
-        v.x = val[M11] * v.x + val[M12] * v.y + val[M13] * v.z + val[M14] * v.w;
-        v.y = val[M21] * v.x + val[M22] * v.y + val[M23] * v.z + val[M24] * v.w;
-        v.z = val[M31] * v.x + val[M32] * v.y + val[M33] * v.z + val[M34] * v.w;
-        v.w = val[M41] * v.x + val[M42] * v.y + val[M43] * v.z + val[M44] * v.w;
-        return v;
-    }
-
-    /**
-     * Multiplies the given row vector by the given matrix.
-     *
-     * @param v The vector.
-     * @param m The matrix.
-     * @return The changed vector.
-     */
-    public static Vector4f mul(Vector4f v, Matrix4f m) {
-        v.x = m.val[M11] * v.x + m.val[M21] * v.y + m.val[M31] * v.z + m.val[M41] * v.w;
-        v.y = m.val[M12] * v.x + m.val[M22] * v.y + m.val[M32] * v.z + m.val[M42] * v.w;
-        v.z = m.val[M13] * v.x + m.val[M23] * v.y + m.val[M33] * v.z + m.val[M43] * v.w;
-        v.w = m.val[M14] * v.x + m.val[M24] * v.y + m.val[M34] * v.z + m.val[M44] * v.w;
+        float x = v.x;
+        float y = v.y;
+        float z = v.z;
+        float w = v.w;
+        v.x = val[M11] * x + val[M12] * y + val[M13] * z + val[M14] * w;
+        v.y = val[M21] * x + val[M22] * y + val[M23] * z + val[M24] * w;
+        v.z = val[M31] * x + val[M32] * y + val[M33] * z + val[M34] * w;
+        v.w = val[M41] * x + val[M42] * y + val[M43] * z + val[M44] * w;
         return v;
     }
 

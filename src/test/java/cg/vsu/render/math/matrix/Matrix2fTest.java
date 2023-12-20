@@ -142,4 +142,19 @@ class Matrix2fTest {
 
         assertEquals(v, r);
     }
+
+    @Test
+    void testMatrixTimesVector() {
+        m1.set(new float[]{
+                0.0f, 3.0f,
+                2.0f, -4.0f,
+        });
+        Vector2f v = new Vector2f(3.0f, -4.0f);
+        m1.mul(v);
+
+        assertEquals(
+                new Vector2f(-8.0f, 25.0f),
+                v
+        );
+    }
 }

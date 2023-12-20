@@ -147,4 +147,20 @@ class Matrix3fTest {
 
         assertEquals(v, r);
     }
+
+    @Test
+    void testMatrixTimesVector() {
+        m1.set(new float[]{
+                0.0f, 3.0f, 7.0f,
+                2.0f, -4.0f, 0.0f,
+                3.0f, -2.0f, 1.0f,
+        });
+        Vector3f v = new Vector3f(3.0f, -4.0f, 5.0f);
+        m1.mul(v);
+
+        assertEquals(
+                new Vector3f(7.0f, 15.0f, 26.f),
+                v
+        );
+    }
 }

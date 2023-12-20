@@ -258,23 +258,12 @@ public class Matrix3f implements Matrix<Matrix3f> {
      * @return The changed given vector.
      */
     public Vector3f mul(Vector3f v) {
-        v.x = val[M11] * v.x + val[M12] * v.y + val[M13] * v.z;
-        v.y = val[M21] * v.x + val[M22] * v.y + val[M23] * v.z;
-        v.z = val[M31] * v.x + val[M32] * v.y + val[M33] * v.z;
-        return v;
-    }
-
-    /**
-     * Multiplies the given row vector by the given matrix.
-     *
-     * @param v The vector.
-     * @param m The matrix.
-     * @return The changed vector.
-     */
-    public static Vector3f mul(Vector3f v, Matrix3f m) {
-        v.x = m.val[M11] * v.x + m.val[M21] * v.y + m.val[M31] * v.z;
-        v.y = m.val[M12] * v.x + m.val[M22] * v.y + m.val[M32] * v.z;
-        v.z = m.val[M13] * v.x + m.val[M23] * v.y + m.val[M33] * v.z;
+        float x = v.x;
+        float y = v.y;
+        float z = v.z;
+        v.x = val[M11] * x + val[M12] * y + val[M13] * z;
+        v.y = val[M21] * x + val[M22] * y + val[M23] * z;
+        v.z = val[M31] * x + val[M32] * y + val[M33] * z;
         return v;
     }
 
