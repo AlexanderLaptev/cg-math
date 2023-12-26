@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "cg.vsu.render.mathlib"
-version = "2.0.0"
+version = "2.0.1"
 
 repositories {
     mavenCentral()
@@ -16,4 +16,12 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    manifest {
+        with(attributes) {
+            this["Automatic-Module-Name"] = "cg.vsu.math"
+        }
+    }
 }
